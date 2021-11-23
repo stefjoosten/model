@@ -1,0 +1,63 @@
+CONTEXT Register IN DUTCH
+    INCLUDE "Generic.adl"
+
+    PATTERN Register
+        PURPOSE PATTERN Register
+            {+
+            Het BIG-register (Beroepen in de Individuele Gezondheidszorg) is een wettelijk, online en openbaar register. Alleen wie in het BIG-register staat, mag een beschermde beroepstitel voeren en mag de bij het beroep horende voorbehouden handelingen zelfstandig uitvoeren. Iedereen kan het register raadplegen. Het BIG-register verzorgt ook de erkenning van buitenlandse diploma’s.
+            +}
+
+        --concepts
+        CONCEPT RegisterId "Technisch element voor het register."
+
+
+        CONCEPT Register "Een register is een officiele lijst van personen die aan de, door het register gestelde voorwaarden voldoen."
+            PURPOSE CONCEPT Register
+                {+
+                In artikel 1 lid 5 wordt aangegeven dat elk Register wordt ingesteld en beheerd door Onze Minister. In artikel 3 lid 6 wordt gesteld dat de registers worden ingesteld ten einde te kunnen voldoen aan een verzoek om informatie als bedoeld in artikel 12 en ten behoeve van het toezicht op de uitvoering van de artikelen 4 en 17.
+                +}
+            REPRESENT Register TYPE OBJECT
+            POPULATION Register CONTAINS
+                [ "arts", "tandarts", "apotheker", "gezondheidszorgpsycholoog", "psychotherapeut", "fysiotherapeut", "verloskundige", "verpleegkundige", "physician assistant", "orthopedagoog-generalist", "klinisch technoloog" ]
+
+            RELATION register [RegisterId*Register][UNI,TOT,INJ]
+            POPULATION register[RegisterId*Register] CONTAINS
+                [ 
+                        ("1","arts")
+                    ,   ("2","tandarts")
+                    ,   ("3","apotheker")
+                    ,   ("4","gezondheidszorgpsycholoog")
+                    ,   ("5","psychotherapeut")
+                    ,   ("6","fysiotherapeut")
+                    ,   ("7","verloskundige")
+                    ,   ("8","verpleegkundige")
+                    ,   ("9","physician assistant")
+                    ,   ("10","orthopedagoog-generalist")
+                    ,   ("11","klinisch technoloog") ]
+
+        RELATION ingangsdatum[RegisterId*Datum][UNI,TOT]
+            POPULATION ingangsdatum[RegisterId*Datum] CONTAINS
+                [ 
+                        ("1",2000-01-01)
+                    ,   ("2",2000-01-01)
+                    ,   ("3",2000-01-01)
+                    ,   ("4",2000-01-01)
+                    ,   ("5",2000-01-01)
+                    ,   ("6",2000-01-01)
+                    ,   ("7",2000-01-01)
+                    ,   ("8",2000-01-01)
+                    ,   ("9",2000-01-01)
+                    ,   ("10",2000-01-01)
+                    ,   ("11",2000-01-01) ]
+
+
+        RELATION einddatum[RegisterId*Datum][UNI]
+
+    ENDPATTERN
+
+      --*** interface
+
+
+
+
+ENDCONTEXT

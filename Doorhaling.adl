@@ -1,0 +1,15 @@
+CONTEXT Bigregister IN DUTCH HTML
+
+    CONCEPT Doorhaling ""
+
+        RELATION doorgehaald[Inschrijving*Inschrijving] [PROP]
+
+        RELATION doorhaling [Doorhaling*Doorhaling][UNI,INJ]
+            MEANING "Doorhaling"
+
+        RELATION persoonRedenDoorhaling [Persoon*Doorhaling][UNI]
+            MEANING "Het doorhalen in het register van een ingeschrevene."
+
+
+
+ENDCONTEXT

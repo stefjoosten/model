@@ -1,0 +1,48 @@
+CONTEXT Persoon IN DUTCH
+
+    INCLUDE "Geslacht.adl"
+    INCLUDE "Nationaliteit.adl"
+    INCLUDE "Adres.adl"
+    INCLUDE "Inschrijving.adl"
+    INCLUDE "Persoon.adl"
+
+    INTERFACE "Personen" FOR USER: V[SESSION*Persoon] CRud
+    BOX <TABLE sortable title="Persoon">
+        [ "Naam"            : naam [Persoon*Naam] CRUD
+        , "Voornaam"        : voornaam [Persoon*Voornaam] CRUD 
+        , "Geslacht"        : geslacht [Persoon*Geslacht] cRUd
+        , "Adres"           : adres [Persoon*Adres] CRUD
+        , "Geboortedatum"   : geboortedatum [Persoon*Datum] CRUd
+        , "Nationaliteit"   : nationaliteit [Persoon*Nationaliteitid] cRUd
+        , "Inschrijving"    : inschrijving[Persoon*Inschrijving] cRud
+        BOX<TABLE>
+            [ 
+                ""    : I LINKTO INTERFACE Inschrijving
+            ]
+        ]
+
+    INTERFACE "Persoon" FOR USER: I[Persoon] CRud
+    BOX 
+        [ "Persoon"         : I[Persoon] CRud
+        , "Naam"            : naam [Persoon*Naam] CRUD
+        , "Voornaam"        : voornaam [Persoon*Voornaam] CRUD 
+        , "Geslacht"        : geslacht [Persoon*Geslacht] cRUd
+        BOX <TABLE>
+           [   "Code"           : I[Geslacht] cRud
+           ,   "Omschrijving"   : geslacht [Geslacht*Omschrijving] cRud
+           ]
+        , "Adres"           : adres [Persoon*Adres] CRUD
+        , "Geboortedatum"   : geboortedatum [Persoon*Datum] CRUd
+        , "Nationaliteit"   : nationaliteit [Persoon*Nationaliteitid] cRUd
+        ]
+
+
+    VIEW "Persoonsnaam": Naam
+       { "Naam": naam~
+       } HTML TEMPLATE "View-FILEOBJECT.html" ENDVIEW         
+
+    VIEW "Inschrijving": Inschrijving
+        {"Inschrijving":  "Inschrijving"
+        } ENDVIEW
+
+ENDCONTEXT

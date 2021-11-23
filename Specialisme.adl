@@ -1,0 +1,28 @@
+CONTEXT Big IN DUTCH
+  PATTERN Specialisme
+  --concepts
+  --SpecialistenRegister
+    CONCEPT SpecialistenRegister "art.8.3-ingeschrevene opgenomen in specialistenregister"
+      PURPOSE CONCEPT SpecialistenRegister
+        {+..komt nog..+}
+      POPULATION SpecialistenRegister CONTAINS
+        ["anesthesiologie","arbeid en gezondheid - bedrijfsgeneeskunde","arbeid en gezondheid verzekeringsgeneeskunde","cardiologie", "cardio thoracale chirurgie", "dermatologie en venerologie",
+        "geneeskunde voor verstandelijk gehandicapten","heelkunde", "huisartsgeneeskunde","interne geneeskunde","keel neus oorheelkunde","kindergeneeskunde", "klinische genetica", 
+        "klinische geriatrie","longziekten en tuberculose","maag-darm-leverziekten","maatschappij en gezondheid","maatschappij en gezondheid 2e fase",
+        "medische microbiologie","neurochirurgie","neurologie","nucleaire geneeskunde","obstetrie en gynaecologie","oogheelkunde",
+        "orthopedie","pathologie","plastische chirurgie","profiel beleid en advies","profiel cosmetische geneeskunde",
+        "profiel forensische geneeskunde","profiel infectieziektebestrijding","profiel internationale gezondheidszorg en tropengeneeskunde", "profiel jeugdgezondheidszorg","profiel medische milieukunde",
+        "profiel soc. med. indicatiestelling en advisering","profiel spoedeisende geneeskunde","profiel tuberculosebestrijding", "profiel verslavingsgeneeskunde","profielregister ziekenhuisgeneeskunde",
+        "psychiatrie","radiologie","radiotherapie","reumatologie","revalidatiegeneeskunde","specialisme ouderengeneeskunde",
+        "sportgeneeskunde","urologie"]
+
+          RELATION specialist [Persoon*SpecialistenRegister][UNI]
+            MEANING "Een Persoon is specialist wanneer deze in het specialistenRegister is opgenomen."
+
+
+
+  ENDPATTERN
+
+  
+
+ENDCONTEXT

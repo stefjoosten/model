@@ -1,0 +1,14 @@
+CONTEXT CurrentDate
+
+    CONCEPT Datum ""
+    REPRESENT Datum TYPE DATE
+
+
+    RELATION sessionToday[SESSION*Datum] -- or whatever the DateTime concept is called
+    REPRESENT Datum TYPE DATE
+    ROLE ExecEngine MAINTAINS "Initialize today's date"
+    RULE "Initialize today's date": I[SESSION] |- sessionToday;sessionToday~
+    VIOLATION (TXT "{EX} SetToday;sessionToday;SESSION;", SRC I, TXT ";Datum")
+
+
+ENDCONTEXT
