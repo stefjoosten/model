@@ -68,6 +68,10 @@ CONTEXT Registratie IN DUTCH HTML
           BOX <TABLE>
             [ "Register"    : register[RegisterId*Register] cRud
               , "Persoon"   : inschrijving[RegisterId*Inschrijving];inschrijving[Persoon*Inschrijving]~ cRud
+              BOX <RAW>
+                 [
+                 "" : I LINKTO INTERFACE Persoon
+                 ]
               , "Naam"      : (inschrijving[RegisterId*Inschrijving];inschrijving[Persoon*Inschrijving]~);naam[Persoon*Naam]
               , "Bignummer" : inschrijving[RegisterId*Inschrijving];bignummer[Inschrijving*Bignummer] cRud
               , "Registratie" : inschrijving [RegisterId*Inschrijving];registratie [Registratie*Inschrijving]~  

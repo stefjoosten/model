@@ -26,7 +26,8 @@ CONTEXT Adres IN DUTCH
 
     ENDPATTERN
 
-    INTERFACE "Adres" FOR USER: V[SESSION*Adres]
+
+    INTERFACE "Adres" FOR USER: I[Adres]
     BOX<TABS>
         ["Adres" : I[Adres]
             BOX <TABLE>
@@ -38,6 +39,17 @@ CONTEXT Adres IN DUTCH
             BOX <TABLE>
             [ "Adres" : I[Adres] 
             , "" : buitenlandsadres[Adres*Buitenlandsadres]
+            ]
+        , 
+        "Personen" : I[Adres]  cRud
+            BOX <TABLE>
+            [
+                "Personen" : I[Adres]  cRud
+            ,    "" : adres[Persoon*Adres]~ cRud
+            BOX <TABLE>
+                [
+                    "" : I LINKTO INTERFACE Persoon
+                ]
             ]
         ]
 

@@ -53,9 +53,45 @@ CONTEXT Register IN DUTCH
 
         RELATION einddatum[RegisterId*Datum][UNI]
 
+        RELATION getuigschrift[RegisterId*Ja_of_Nee][UNI]
+        POPULATION getuigschrift[RegisterId*Ja_of_Nee] CONTAINS
+        [
+                ("1","Ja")
+            ,   ("2","Ja")
+            ,   ("3","Ja")
+            ,   ("4","Ja")
+            ,   ("5","Nee")
+            ,   ("6","Ja")
+            ,   ("7","Nee")
+            ,   ("8","Ja")
+            ,   ("9","Ja")
+            ,   ("10","Ja")
+            ,   ("11","Ja")
+        ]
+        ROLE USER MAINTAINS TotGetuigschrift
+        RULE TotGetuigschrift : I[RegisterId]  |-  getuigschrift[RegisterId*Ja_of_Nee];getuigschrift[RegisterId*Ja_of_Nee]~
+            MEANING "meaning"
+            MESSAGE "Het ja of nee moet ingevuld worden."
+            VIOLATION ( TXT "Voor register ", SRC I, TXT " is geen ja of nee ingevuld.")
+
+
+
     ENDPATTERN
 
       --*** interface
+  INTERFACE Register FOR  Beheerder       : "_SESSION"  cRud
+  BOX <TABS>
+    [ 
+       Register                        : V[SESSION*RegisterId] CRud
+        BOX <TABLE sortable title="Register">
+            [ 
+                "Register"              : register[RegisterId*Register] CRUd
+            ,   "Ingangsdatum"          : ingangsdatum[RegisterId*Datum] CRUd
+            ,   "Einddatum"             : einddatum[RegisterId*Datum] CRUd
+            ,   "Getuigschrift nodig"   : getuigschrift[RegisterId*Ja_of_Nee] cRUd
+            ]
+    ]
+
 
 
 
