@@ -38,7 +38,7 @@ CONTEXT Bigregister IN DUTCH HTML
     
     +}
 
-  INCLUDE "Afwijzingsgrond.adl"
+  INCLUDE "Weigering.adl"
   --INCLUDE "Doorhaling.adl"
   INCLUDE "Aantekening.adl"
   INCLUDE "Specialisme.adl"

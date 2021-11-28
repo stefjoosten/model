@@ -126,11 +126,18 @@ CONTEXT Big IN DUTCH
                 ,   "getuigschriftdatum" : getuigschriftdatum[Inschrijving*Datum]CRUd
                 ,   "kwalificatiedatum" : kwalificatiedatum[Inschrijving*Datum] cRud
                 ]
+                ,
+        "Weigering" : I[Inschrijving]                                   
+              BOX <TABLE>
+                ["Weigering" : I[Inschrijving]
+                ,    "Weigeringsgrond" : inschrijvingsWeigering[Inschrijving*Weigering]   cRUd
+                ]
+
           ]
 
-    INTERFACE Inschrijving FOR USER: I[Inschrijving]
+    INTERFACE Inschrijving FOR USER: I[Inschrijving] CRud
     BOX<TABS>
-        ["Inschrijving": I[Inschrijving]
+        ["Inschrijving": I[Inschrijving] CRud
             BOX <TABLE sortable title="Inschrijving"  >
                 [ 
                     "Inschrijving"    : I[Inschrijving] CRud
@@ -153,7 +160,22 @@ CONTEXT Big IN DUTCH
                 ,   "getuigschriftdatum" : getuigschriftdatum[Inschrijving*Datum]CRUd
                 ,   "kwalificatiedatum" : kwalificatiedatum[Inschrijving*Datum] cRud
                 ]
-          ]
+                ,
+        "Weigering" : I[Inschrijving]                                   
+              BOX <TABLE>
+                ["Weigering" : I[Inschrijving]
+                 ,   "Weigeringsgrond" : inschrijvingsWeigering[Inschrijving*Weigering]   cRUd
+                ]
+                ,
+        "Doorhaling" : I[Inschrijving]                                   
+              BOX <TABLE>
+                ["Doorhaling" : I[Inschrijving]
+                 ,   "Doorhalinggrond" : doorgehaald [Inschrijving*Doorhaling]    cRUd
+                ]
+
+            ]
+
+
 
 
 ENDCONTEXT

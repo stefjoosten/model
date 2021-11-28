@@ -1,8 +1,9 @@
 CONTEXT Registratie IN DUTCH HTML
     INCLUDE "Inschrijving.adl"
     INCLUDE "Doorhaling.adl"
-    INCLUDE "Afwijzingsgrond.adl"
+    INCLUDE "Weigering.adl"
     INCLUDE "Aantekening.adl"
+    INCLUDE "Registers/Arts.adl"
     
     
     PATTERN Registratie
@@ -50,17 +51,26 @@ CONTEXT Registratie IN DUTCH HTML
             ROLE ExecEngine MAINTAINS "Voeg datum registratie toe"
             RULE "Voeg datum registratie toe": I[Registratie] |- registratiedatum[Registratie*Datum];registratiedatum[Registratie*Datum]~
             VIOLATION ( 
-                        TXT "{EX} InsPair;registratiedatum;Registratie;", SRC I, TXT ";Datum;{php}date(DATE_ISO8601)" -- Set the DateTime
+                        TXT "{EX} InsPair;registratiedatum;Registratie;", SRC I, TXT ";Datum;{php}date(DATE_ISO8601)" -- Set the Date
                       )
 
+{-            PURPOSE RULE "Plaats registratie in artsenregister"
+            {+
+            +}
+            ROLE ExecEngine MAINTAINS "Plaats registratie in artsenregister"
+            RULE "Plaats registratie in artsenregister" : inschrijving[RegisterId*Inschrijving];inschrijving[RegisterId*Inschrijving]~ |- V;"arts"[RegisterId]
+            VIOLATION ( TXT "{EX} InsAtom;Arts"
+                      , TXT "{EX} InsPair;artsRegistratie[Arts*RegisterId];Arts;_NEW;RegisterId;", TGT I
+            )
+-}
     ENDPATTERN
-
+{-
     PATTERN Beroepsbeoefenaar
             RELATION beroepsbeoefenaar [Persoon * Registratie]
             MEANING "beroepsbeoefenaar, komt in de relatie nadat de inschrijving is goedgekeurd."
 
     ENDPATTERN
-
+-}
   INTERFACE Registratie FOR USER: "_SESSION" cRud
   BOX <TABS>
       [ 
@@ -78,11 +88,16 @@ CONTEXT Registratie IN DUTCH HTML
             ]
 
           ,
-        Afwijzigingsgrond : V[SESSION*Persoon]                                    cRud
+        Weigering : V[SESSION*Persoon]                                    cRud
           BOX <TABLE>
             ["Persoon"    : I                                                     cRud
-            , "Naam"      : naam[Persoon*Naam]                                   cRud
-            , "Afwijzigingsgrond" : afwijzing [Persoon*Afwijzingsgrond]   cRUD
+            , "Naam"      : naam[Persoon*Naam]     
+            , "Weigeringsgrond" : inschrijving[Persoon*Inschrijving] cRud
+              BOX <TABLE>
+                [
+                  "" : I[Inschrijving]  cRud
+                ,"Weigeringsgrond" : inschrijvingsWeigering[Inschrijving*Weigering]   cRUd
+                ]
             ]
           ,
         Aantekening : V[SESSION*Persoon]                                          cRud
@@ -96,7 +111,12 @@ CONTEXT Registratie IN DUTCH HTML
           BOX <TABLE>
             ["Persoon"    : I                                                     cRud
             , "Naam"      : naam[Persoon*Naam]                                   cRud
-            , "Doorhaling reden" : persoonRedenDoorhaling [Persoon*Doorhaling]    cRUD
+            , "Doorhalingreden" : inschrijving[Persoon*Inschrijving] cRud
+              BOX <TABLE>
+                [
+                  "" : I[Inschrijving]  cRud
+                ,"Doorhalingreden" : doorgehaald [Inschrijving*Doorhaling]   cRUd
+                ]
             ]
       ]
 
