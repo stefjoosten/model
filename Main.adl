@@ -12,7 +12,7 @@ CONTEXT Bigregister IN DUTCH HTML
     Naast het registreren en herregistreren van deze beroepsbeoefenaren en de uitvoering van het tuchtrecht valt ook het erkennen van (buitenlandse) diploma’s en onder de taken van het BIG-register.
     Zorgverleners met een buitenlands diploma moeten voldoen aan de Nederlandse opleidingseisen. Hun opleidingsniveau moet gelijk zijn aan dat van een zorgverlener met een Nederlands diploma. Eventueel telt relevante werkervaring mee om het niveau te bepalen. Het CIBG neemt hierover een besluit op grond van het advies van de onafhankelijke deskundigencommissie, de Commissie buitenslands gediplomeerden volksgezondheid (CBGV).
     </p>
-    Tevens kunnen zorgprofessionals bij het BIG-register terecht voor het aanvragen van verklaringen en zorgt het bigregister voor het aantekenen van specialismen en voorschrijfbevoegdheden.
+    Tevens kunnen zorgprofessionals bij het BIG-register terecht voor het aanvragen van verklaringen en zorgt het BIG-register voor het aantekenen van specialismen en voorschrijfbevoegdheden.
     </p>
     Voor zorgconsumenten en organisaties biedt het BIG-register de mogelijkheid te controleren of zijn zorgverlener bevoegd is om zijn of haar beroep uit te oefenen.
     </p> </p>
@@ -31,7 +31,7 @@ CONTEXT Bigregister IN DUTCH HTML
     </UL>
 
     </p>
-    Het BIGregister bevindt zich in een keten van informatieverstrekking en is sterk afhankelijk van informatie van derden. Zo zijn derden weer sterk afhankelijk van onze informatie.
+    Het BIG-register bevindt zich in een keten van informatieverstrekking en is sterk afhankelijk van informatie van derden. Zo zijn derden weer sterk afhankelijk van onze informatie.
 
     <h3>Huidig informatiesysteem</h3>
     De Wet BIG stamt uit 1993. Het huidige zaaksysteem (Zorro) is als opvolger van Ribiz ontwikkeld in 2007. Eind 2018 is het eerste deel van de publieke website vernieuwd. Medio 2019 volgt vernieuwing van een volgend deel van de publieke website, waarmee op dat moment alleen de advieswijzer nog niet is omgezet.
@@ -67,7 +67,7 @@ CONTEXT Bigregister IN DUTCH HTML
     {-
     -- Automated rules
     PURPOSE RULE "inschrijftijdstip vastleggen"
-    {+Wanneer een persoon in het BIGregister wordt ingeschreven dan automatisch datum en tijd invullen.+}
+    {+Wanneer een persoon in het BIG-register wordt ingeschreven dan automatisch datum en tijd invullen.+}
     ROLE "ExecEngine" MAINTAINS "inschrijftijdstip vastleggen"
     RULE "inschrijftijdstip vastleggen": I[Persoon] |- heeft[Persoon*InschrijfTijdstip];heeft[Persoon*InschrijfTijdstip]~ 
     VIOLATION (TXT "NewStruct;InschrijfTijdstip"
